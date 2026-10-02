@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia de la Energía — Exploración Completa</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/inter');
+        @import url('https://fonts.cdnfonts.com/css/playfair-display');
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent2: #0f3460;
+            --gold: #f0a500;
+            --green: #00b894;
+            --blue: #0984e3;
+            --orange: #e17055;
+            --light: #f8f9fa;
+            --dark: #0d0d1a;
+            --card-bg: rgba(255,255,255,0.03);
+            --glass: rgba(255,255,255,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13,13,26,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        nav .nav-links a:hover { color: var(--gold); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--gold);
+            transition: 0.3s;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(233,69,96,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(15,52,96,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(240,165,0,0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 span { color: var(--gold); }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233,69,96,0.3);
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title .line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* INTRO SECTION */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .intro-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.4s, border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .intro-card:hover::before { transform: scaleX(1); }
+        .intro-card:hover { transform: translateY(-8px); border-color: rgba(240,165,0,0.2); }
+
+        .intro-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .intro-card h3 {
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .intro-card p {
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        /* TIMELINE */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--gold), var(--green), var(--blue));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(240,165,0,0.3);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 18px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 3px solid var(--dark);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(240,165,0,0.4);
+        }
+
+        .timeline-content .era {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-content h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: #999;
+            font-size: 0.92rem;
+        }
+
+        .timeline-content .energy-tag {
+            display: inline-block;
+            background: rgba(240,165,0,0.1);
+            color: var(--gold);
+            padding: 0.2rem 0.7rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-top: 0.8rem;
+            margin-right: 0.3rem;
+        }
+
+        /* ENERGY TYPES SECTION */
+        .energy-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .energy-type-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s;
+        }
+
+        .energy-type-card:hover { transform: translateY(-5px); }
+
+        .energy-type-card .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .energy-type-card h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .energy-type-card p {
+            color: #999;
+            font-size: 0.92rem;
+            margin-bottom: 1rem;
+        }
+
+        .energy-type-card .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .energy-type-card .examples span {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+
+        /* KINETIC POTENTIAL */
+        .kp-section {
+            background: linear-gradient(135deg, rgba(15,52,96,0.3), rgba(26,26,46,0.5));
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            margin: 2rem auto;
+            max-width: 1300px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .kp-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .energy-demo {
+            width: 280px;
+            height: 300px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .energy-demo h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .ball-demo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .potential-ball {
+            background: radial-gradient(circle at 30% 30%, var(--gold), #c77800);
+            animation: potentialAnim 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(240,165,0,0.4);
+        }
+
+        .kinetic-ball {
+            background: radial-gradient(circle at 30% 30%, var(--accent), #b8002e);
+            animation: kineticAnim 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(233,69,96,0.4);
+        }
+
+        @keyframes potentialAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-60px); }
+        }
+
+        @keyframes kineticAnim {
+            0% { transform: translateX(-80px); }
+            100% { transform: translateX(80px); }
+        }
+
+        .energy-bar {
+            width: 80%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+
+        .energy-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+
+        .potential-bar .energy-bar-fill {
+            background: linear-gradient(90deg, var(--gold), #ffd700);
+            animation: barPulse1 3s ease-in-out infinite;
+        }
+
+        .kinetic-bar .energy-bar-fill {
+            background: linear-gradient(90deg, var(--accent), #ff6b81);
+            animation: barPulse2 2s ease-in-out infinite;
+        }
+
+        @keyframes barPulse1 {
+            0%, 100% { width: 30%; }
+            50% { width: 100%; }
+        }
+
+        @keyframes barPulse2 {
+            0% { width: 20%; }
+            50% { width: 100%; }
+            100% { width: 20%; }
+        }
+
+        .kp-description {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .kp-desc-card {
+            padding: 2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .kp-desc-card h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .kp-desc-card p {
+            color: #999;
+            font-size: 0.92rem;
+        }
+
+        .kp-desc-card .formula {
+            display: inline-block;
+            background: rgba(240,165,0,0.1);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-top: 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* RENEWABLE / NON-RENEWABLE */
+        .rn-section {
+            padding: 5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .rn-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .rn-column {
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rn-column.renewable {
+            background: linear-gradient(135deg, rgba(0,184,148,0.1), rgba(0,184,148,0.02));
+            border: 1px solid rgba(0,184,148,0.2);
+        }
+
+        .rn-column.non-renewable {
+            background: linear-gradient(135deg, rgba(225,112,85,0.1), rgba(225,112,85,0.02));
+            border: 1px solid rgba(225,112,85,0.2);
+        }
+
+        .rn-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .rn-column.renewable h3 { color: var(--green); }
+        .rn-column.non-renewable h3 { color: var(--orange); }
+
+        .rn-column > p {
+            color: #999;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .rn-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .rn-item:hover { transform: translateX(5px); }
+
+        .rn-item .rn-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .rn-item h4 {
+            color: #fff;
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .rn-item p {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .rn-item .period-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 10px;
+            margin-top: 0.4rem;
+        }
+
+        .renewable .period-badge {
+            background: rgba(0,184,148,0.15);
+            color: var(--green);
+        }
+
+        .non-renewable .period-badge {
+            background: rgba(225,112,85,0.15);
+            color: var(--orange);
+        }
+
+        /* STATS */
+        .stats-section {
+            padding: 4rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover { transform: scale(1.05); }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', Georgia, serif;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* CHART SECTION */
+        .chart-section {
+            padding: 4rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .chart-container {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            padding: 1rem 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .bar {
+            width: 40px;
+            border-radius: 8px 8px 0 0;
+            transition: height 1s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .bar:hover { opacity: 0.8; }
+
+        .bar-label {
+            color: #888;
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .bar-value {
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        /* CURRENT USES */
+        .current-uses {
+            padding: 5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .uses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .use-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 18px;
+            padding: 2rem;
+            transition: all 0.4s;
+            cursor: default;
+        }
+
+        .use-card:hover {
+            border-color: rgba(240,165,0,0.3);
+            transform: translateY(-5px);
+        }
+
+        .use-card .use-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-card h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .use-card p {
+            color: #888;
+            font-size: 0.88rem;
+        }
+
+        .use-card .use-stat {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .use-card .use-stat span {
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+
+        /* TRANSFORMATION SECTION */
+        .transform-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .transform-step {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 150px;
+            transition: all 0.3s;
+        }
+
+        .transform-step:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .transform-step .step-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .transform-step h5 { color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; }
+        .transform-step p { color: #888; font-size: 0.78rem; }
+
+        .transform-arrow {
+            color: var(--gold);
+            font-size: 1.5rem;
+            animation: arrowPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.3; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(5px); }
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p { color: #666; font-size: 0.85rem; }
+        footer .footer-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* TABS */
+        .tabs-container {
+            margin-top: 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: #888;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-family: inherit;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+
+            nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(13,13,26,0.95);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            nav .nav-links.open { display: flex; }
+
+            .timeline-line { left: 20px; }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: row !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content { width: 100%; }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .rn-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .kp-visual { gap: 1.5rem; }
+
+            .energy-demo { width: 240px; height: 260px; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--accent), var(--gold));
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">⚡ Energía & Historia</div>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#linea-tiempo">Línea del Tiempo</a></li>
+            <li><a href="#tipos">Tipos de Energía</a></li>
+            <li><a href="#cinetica-potencial">Cinética y Potencial</a></li>
+            <li><a href="#renovables">Renovables vs No Renovables</a></li>
+            <li><a href="#actualidad">Actualidad</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>La Historia de la <span>Energía</span></h1>
+            <p>Un viaje fascinante a través del tiempo explorando cómo la humanidad descubrió, dominó y transformó las diferentes formas de energía desde la prehistoria hasta la era moderna.</p>
+            <a href="#introduccion" class="hero-btn">Explorar la Historia →</a>
+        </div>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section id="introduccion">
+        <div class="section-title fade-in">
+            <h2>¿Qué es la Energía?</h2>
+            <div class="line"></div>
+            <p>La energía es la capacidad de realizar trabajo. Ha sido el motor de la civilización humana desde sus albores.</p>
+        </div>
+        <div class="intro-grid">
+            <div class="intro-card fade-in">
+                <span class="icon">🔥</span>
+                <h3>Origen Ancestral</h3>
+                <p>Desde el dominio del fuego hace ~1 millón de años, la energía ha sido fundamental para la supervivencia y evolución humana.</p>
+            </div>
+            <div class="intro-card fade-in">
+                <span class="icon">⚙️</span>
+                <h3>Motor del Progreso</h3>
+                <p>Cada revolución industrial fue impulsada por una nueva forma de energía: vapor, electricidad, petróleo, energía nuclear.</p>
+            </div>
+            <div class="intro-card fade-in">
+                <span class="icon">🌍</span>
+                <h3>Desafío Global</h3>
+                <p>Hoy enfrentamos el reto de transitar hacia energías limpias y sostenibles para preservar nuestro planeta.</p>
+            </div>
+            <div class="intro-card fade-in">
+                <span class="icon">🔬</span>
+                <h3>Ciencia y Energía</h3>
+                <p>La termodinámica, la mecánica y la física cuántica han revelado las leyes fundamentales que gobiernan la energía.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-section">
+        <div class="section-title fade-in">
+            <h2>Energía en Cifras</h2>
+            <div class="line"></div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-number" data-target="1000000">0</div>
+                <div class="stat-label">Años usando fuego (aprox.)</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number" data-target="580">0</div>
+                <div class="stat-label">Exajulios consumidos/año mundial</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number" data-target="80">0</div>
+                <div class="stat-label">% energía de fuentes no renovables</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-number" data-target="30">0</div>
+                <div class="stat-label">% electricidad de fuentes renovables (2023)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LÍNEA DEL TIEMPO -->
+    <section id="linea-tiempo">
+        <div class="section-title fade-in">
+            <h2>Línea del Tiempo Energética</h2>
+            <div class="line"></div>
+            <p>Un recorrido por los momentos clave en la historia de la energía</p>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">~1,000,000 a.C.</span>
+                    <h3>🔥 Dominio del Fuego</h3>
+                    <p>Los primeros homínidos aprendieron a controlar el fuego, la primera fuente de energía dominada por el ser humano. Permitió cocinar alimentos, proporcionar calor y protección.</p>
+                    <span class="energy-tag">Energía Química</span>
+                    <span class="energy-tag">Energía Térmica</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">~5,000 a.C.</span>
+                    <h3>💨 Energía Eólica Temprana</h3>
+                    <p>Los egipcios y mesopotámicos comenzaron a usar velas en embarcaciones y los persas construyeron los primeros molinos de viento para moler grano y bombear agua.</p>
+                    <span class="energy-tag">Energía Eólica</span>
+                    <span class="energy-tag">Energía Cinética</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">~3,000 a.C.</span>
+                    <h3>💧 Energía Hidráulica</h3>
+                    <p>Civilizaciones antiguas construyeron acequias, norias y ruedas hidráulicas. Los romanos perfeccionaron los acueductos aprovechando la energía potencial del agua.</p>
+                    <span class="energy-tag">Energía Potencial</span>
+                    <span class="energy-tag">Energía Hidráulica</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">Siglo III a.C.</span>
+                    <h3>📐 Primeros Estudios Científicos</h3>
+                    <p>Arquímedes estudió las palancas y la flotabilidad. Los griegos sentaron las bases de la mecánica clásica con sus estudios sobre movimiento y fuerza.</p>
+                    <span class="energy-tag">Mecánica</span>
+                    <span class="energy-tag">Energía Potencial</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">1678 — Siglo XVII</span>
+                    <h3>⚙️ Máquina de Vapor</h3>
+                    <p>Denis Papin inventó el digestor a vapor. Thomas Newcomen (1712) y James Watt (1769) perfeccionaron la máquina de vapor, iniciando la Revolución Industrial.</p>
+                    <span class="energy-tag">Energía Térmica</span>
+                    <span class="energy-tag">Energía Mecánica</span>
+                    <span class="energy-tag">Carbón</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">1800 — Siglo XIX</span>
+                    <h3>⚡ La Era de la Electricidad</h3>
+                    <p>Alessandro Volta creó la primera pila (1800). Michael Faraday descubrió la inducción electromagnética (1831). Edison y Tesla revolucionaron la distribución eléctrica.</p>
+                    <span class="energy-tag">Energía Eléctrica</span>
+                    <span class="energy-tag">Electromagnetismo</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">1859 — Siglo XIX</span>
+                    <h3>🛢️ La Era del Petróleo</h3>
+                    <p>Edwin Drake perforó el primer pozo petrolero en Pensilvania. El petróleo transformó el transporte, la industria y la geopolítica mundial durante los siglos XIX y XX.</p>
+                    <span class="energy-tag">Combustibles Fósiles</span>
+                    <span class="energy-tag">Energía Química</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">1905 — Siglo XX</span>
+                    <h3>☢️ Energía Nuclear</h3>
+                    <p>Einstein formuló E=mc². En 1942 se logró la primera reacción nuclear en cadena. En 1954, la primera central nuclear generó electricidad para uso civil en Óbninsk, URSS.</p>
+                    <span class="energy-tag">Energía Nuclear</span>
+                    <span class="energy-tag">Fisión</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">1954 — Siglo XX</span>
+                    <h3>☀️ Células Solares</h3>
+                    <p>Los Laboratorios Bell crearon la primera célula solar de silicio práctica. Comenzó la era de la energía fotovoltaica que hoy es una de las principales fuentes renovables.</p>
+                    <span class="energy-tag">Energía Solar</span>
+                    <span class="energy-tag">Fotovoltaica</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="era">Siglo XXI — Actualidad</span>
+                    <h3>🌱 Transición Energética</h3>
+                    <p>La humanidad enfrenta el cambio climático y avanza hacia energías renovables. La solar y eólica son ya las fuentes de electricidad de menor costo en muchas regiones del mundo.</p>
+                    <span class="energy-tag">Renovables</span>
+                    <span class="energy-tag">Hidrógeno Verde</span>
+                    <span class="energy-tag">Fusión Nuclear</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPOS DE ENERGÍA -->
+    <section id="tipos">
+        <div class="section-title fade-in">
+            <h2>Formas de Energía</h2>
+            <div class="line"></div>
+            <p>La energía se manifiesta de múltiples formas en el universo</p>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="tab-mecanica">Mecánica</button>
+                <button class="tab-btn" data-tab="tab-termica">Térmica</button>
+                <button class="tab-btn" data-tab="tab-electrica">Eléctrica</button>
+                <button class="tab-btn" data-tab="tab-quimica">Química</button>
+                <button class="tab-btn" data-tab="tab-nuclear">Nuclear</button>
+                <button class="tab-btn" data-tab="tab-radiante">Radiante</button>
+            </div>
+
+            <div class="tab-content active" id="tab-mecanica">
+                <div class="energy-types-grid">
+                    <div class="energy-type-card">
+                        <div class="card-icon">🏗️</div>
+                        <h3>Energía Mecánica</h3>
+                        <p>Es la suma de la energía cinética y potencial en un sistema. Se relaciona con el movimiento y la posición de los objetos. Fue la primera forma de energía estudiada científicamente.</p>
+                        <div class="examples">
+                            <span>Martillo</span>
+                            <span>Péndulo</span>
+                            <span>Montaña rusa</span>
+                            <span>Molinos</span>
+                        </div>
+                    </div>
+                    <div class="energy-type-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Contexto Histórico</h3>
+                        <p>Desde las palancas de Arquímedes hasta las máquinas simples, la energía mecánica fue la base de toda la ingeniería antigua. Los romanos usaban poleas y engranajes para construir sus monumentos.</p>
+                        <div class="examples">
+                            <span>Arquímedes</span>
+                            <span>Hero de Alejandría</span>
+                            <span>Leonardo da Vinci</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-termica">
+                <div class="energy-types-grid">
+                    <div class="energy-type-card">
+                        <div class="card-icon">🌡️</div>
+                        <h3>Energía Térmica</h3>
+                        <p>Energía asociada al movimiento de las partículas microscópicas de la materia. A mayor temperatura, mayor energía cinética molecular. El fuego fue su primera manifestación controlada.</p>
+                        <div class="examples">
+                            <span>Fuego</span>
+                            <span>Geotermia</span>
+                            <span>Vapor</span>
+                            <span>Combustión</span>
+                        </div>
+                    </div>
+                    <div class="energy-type-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Contexto Histórico</h3>
+                        <p>La termodinámica nació en el siglo XIX con Carnot, Clausius y Kelvin. Las leyes de la termodinámica gobiernan cómo la energía térmica se transforma en trabajo útil.</p>
+                        <div class="examples">
+                            <span>Carnot (1824)</span>
+                            <span>Máquina de Watt</span>
+                            <span>Revolución Industrial</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-electrica">
+                <div class="energy-types-grid">
+                    <div class="energy-type-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Energía Eléctrica</h3>
+                        <p>Producida por el movimiento de electrones. Es la forma de energía más versátil y fácil de transportar. Transformó completamente la sociedad moderna desde finales del siglo XIX.</p>
+                        <div class="examples">
+                            <span>Corriente alterna</span>
+                            <span>Corriente directa</span>
+                            <span>Electromagnetismo</span>
+                        </div>
+                    </div>
+                    <div class="energy-type-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Contexto Histórico</h3>
+                        <p>De los experimentos de Volta y Faraday a las centrales eléctricas de Edison y Tesla. La "Guerra de las Corrientes" definió el sistema eléctrico que usamos hoy.</p>
+                        <div class="examples">
+                            <span>Volta (1800)</span>
+                            <span>Faraday (1831)</span>
+                            <span>Edison vs Tesla</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-quimica">
+                <div class="energy-types-grid">
+                    <div class="energy-type-card">
+                        <div class="card-icon">🧪</div>
+                        <h3>Energía Química</h3>
+                        <p>Almacenada en los enlaces químicos de las sustancias. Se libera durante las reacciones químicas. Los combustibles fósiles, los alimentos y las baterías son ejemplos clave.</p>
+                        <div class="examples">
+                            <span>Petróleo</span>
+                            <span>Carbón</span>
+                            <span>Gas natural</span>
+                            <span>Baterías</span>
+                            <span>Alimentos</span>
+                        </div>
+                    </div>
+                    <div class="energy-type-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Contexto Histórico</h3>
+                        <p>La química moderna del siglo XVIII con Lavoisier permitió entender la combustión. Los combustibles fósiles impulsaron la Revolución Industrial y siguen dominando el consumo energético mundial.</p>
+                        <div class="examples">
+                            <span>Lavoisier</span>
+                            <span>Revolución Industrial</span>
+                            <span>Pila de Volta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-nuclear">
+                <div class="energy-types-grid">
+                    <div class="energy-type-card">
+                        <div class="card-icon">☢️</div>
+                        <h3>Energía Nuclear</h3>
+                        <p>Almacenada en el núcleo de los átomos. Se libera por fisión (división) o fusión (unión) de núcleos atómicos. Es la fuente de energía más densa conocida.</p>
+                        <div class="examples">
+                            <span>Fisión</span>
+                            <span>Fusión</span>
+                            <span>Uranio</span>
+                            <span>Plutonio</span>
+                        </div>
+                    </div>
+                    <div class="energy-type-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Contexto Histórico</h3>
+                        <p>Descubierta teóricamente por Einstein (E=mc², 1905). La primera reacción en cadena fue en 1942 (Chicago). Las bombas atómicas (1945) y las centrales nucleares (1954) marcaron su uso.</p>
+                        <div class="examples">
+                            <span>Einstein (1905)</span>
+                            <span>Proyecto Manhattan</span>
+                            <span>Chernóbil (1986)</span>
+                            <span>Fukushima (2011)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-radiante">
+                <div class="energy-types-grid">
+                    <div class="energy-type-card">
+                        <div class="card-icon">☀️</div>
+                        <h3>Energía Radiante</h3>
+                        <p>Energía que viaja en forma de ondas electromagnéticas. Incluye la luz visible, rayos UV, infrarrojos, microondas y rayos X. El Sol es la principal fuente para la Tierra.</p>
+                        <div class="examples">
+                            <span>Luz solar</span>
+                            <span>Fotovoltaica</span>
+                            <span>Microondas</span>
+                            <span>Infrarrojo</span>
+                        </div>
+                    </div>
+                    <div class="energy-type-card">
+                        <div class="card-icon">📜</div>
+                        <h3>Contexto Histórico</h3>
+                        <p>Maxwell unificó electricidad y luz (1865). La energía solar fotovoltaica se desarrolló desde 1954. Hoy es una de las fuentes de energía de más rápido crecimiento en el mundo.</p>
+                        <div class="examples">
+                            <span>Maxwell (1865)</span>
+                            <span>Laboratorios Bell (1954)</span>
+                            <span>Revolución Solar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CINÉTICA Y POTENCIAL -->
+    <div class="kp-section" id="cinetica-potencial">
+        <div class="section-title fade-in">
+            <h2>Energía Cinética y Potencial</h2>
+            <div class="line"></div>
+            <p>Las dos formas fundamentales de la energía mecánica que se transforman constantemente</p>
+        </div>
+
+        <div class="kp-visual">
+            <div class="energy-demo">
+                <h4>⬆️ Energía Potencial</h4>
+                <p style="color:#888; font-size:0.8rem; margin-bottom:1rem;">Energía almacenada por posición</p>
+                <div class="ball-demo potential-ball"></div>
+                <div class="energy-bar potential-bar">
+                    <div class="energy-bar-fill"></div>
+                </div>
+                <p style="color:var(--gold); font-size:0.75rem; margin-top:0.5rem;">Energía Potencial Gravitacional</p>
+            </div>
+
+            <div class="energy-demo">
+                <h4>➡️ Energía Cinética</h4>
+                <p style="color:#888; font-size:0.8rem; margin-bottom:1rem;">Energía del movimiento</p>
+                <div class="ball-demo kinetic-ball"></div>
+                <div class="energy-bar kinetic-bar">
+                    <div class="energy-bar-fill"></div>
+                </div>
+                <p style="color:var(--accent); font-size:0.75rem; margin-top:0.5rem;">Energía Cinética de Traslación</p>
+            </div>
+        </div>
+
+        <div class="kp-description">
+            <div class="kp-desc-card fade-in">
+                <h4>🔺 Energía Potencial</h4>
+                <p>Es la energía almacenada en un objeto debido a su posición o configuración. Un objeto elevado tiene energía potencial gravitacional. Un resorte comprimido tiene energía potencial elástica. Los combustibles tienen energía potencial química.</p>
+                <div class="formula">Ep = m × g × h</div>
+                <p style="margin-top:0.8rem; font-size:0.85rem;"><strong style="color:#fff;">Ejemplos históricos:</strong> Las piedras de las catapultas medievales, el agua retenida en presas romanas, los pesos de los relojes de péndulo.</p>
+            </div>
+            <div class="kp-desc-card fade-in">
+                <h4>🏃 Energía Cinética</h4>
+                <p>Es la energía que posee un objeto debido a su movimiento. Depende de la masa y la velocidad del objeto. Cuanto más rápido se mueve un objeto, mayor es su energía cinética.</p>
+                <div class="formula">Ec = ½ × m × v²</div>
+                <p style="margin-top:0.8rem; font-size:0.85rem;"><strong style="color:#fff;">Ejemplos históricos:</strong> Las ruedas hidráulicas medievales, los molinos de viento, las turbinas modernas, los vehículos en movimiento.</p>
+            </div>
+            <div class="kp-desc-card fade-in">
+                <h4>🔄 Transformación Mutua</h4>
+                <p>La energía potencial y cinética se transforman constantemente la una en la otra. En un péndulo, en lo más alto toda la energía es potencial; en lo más bajo, toda es cinética. La energía total se conserva.</p>
+                <div class="formula">Em = Ep + Ec = constante</div>
+                <p style="margin-top:0.8rem; font-size:0.85rem;"><strong style="color:#fff;">Principio de Conservación:</strong> La energía no se crea ni se destruye, solo se transforma. Este es uno de los principios más fundamentales de la física.</p>
+            </div>
+        </div>
+
+        <!-- Transformación visual -->
+        <h3 style="text-align:center; color:#fff; margin-top:3rem; margin-bottom:1rem;">Transformación de Energía en la Historia</h3>
+        <div class="transform-flow">
+            <div class="transform-step">
+                <div class="step-icon">🪨</div>
+                <h5>Presa</h5>
+                <p>E. Potencial</p>
+            </div>
+            <div class="transform-arrow">→</div>
+            <div class="transform-step">
+                <div class="step-icon">💧</div>
+                <h5>Caída de agua</h5>
+                <p>E. Cinética</p>
+            </div>
+            <div class="transform-arrow">→</div>
+            <div class="transform-step">
+                <div class="step-icon">⚙️</div>
+                <h5>Turbina</h5>
+                <p>E. Mecánica</p>
+            </div>
+            <div class="transform-arrow">→</div>
+            <div class="transform-step">
+                <div class="step-icon">⚡</div>
+                <h5>Generador</h5>
+                <p>E. Eléctrica</p>
+            </div>
+            <div class="transform-arrow">→</div>
+            <div class="transform-step">
+                <div class="step-icon">💡</div>
+                <h5>Hogar</h5>
+                <p>Luz + Calor</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RENOVABLES VS NO RENOVABLES -->
+    <section class="rn-section" id="renovables">
+        <div class="section-title fade-in">
+            <h2>Renovables vs No Renovables</h2>
+            <div class="line"></div>
+            <p>La clasificación más importante de las fuentes de energía en la actualidad</p>
+        </div>
+
+        <div class="rn-comparison">
+            <div class="rn-column renewable fade-in">
+                <h3>🌿 Energías Renovables</h3>
+                <p>Fuentes que se regeneran naturalmente y son prácticamente inagotables a escala humana. Su impacto ambiental es significativamente menor.</p>
+
+                <div class="rn-item">
+                    <div class="rn-icon">☀️</div>
+                    <div>
+                        <h4>Energía Solar</h4>
+                        <p>Convierte la radiación solar en electricidad mediante paneles fotovoltaicos o en calor mediante colectores térmicos.</p>
+                        <span class="period-badge">Uso masivo desde 2000s</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">💨</div>
+                    <div>
+                        <h4>Energía Eólica</h4>
+                        <p>Aprovecha la fuerza del viento mediante aerogeneradores. Los molinos de viento se usan desde la antigüedad, pero la generación eléctrica comenzó en 1887.</p>
+                        <span class="period-badge">Molinos: antigüedad | Eléctrica: 1887</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">💧</div>
+                    <div>
+                        <h4>Energía Hidroeléctrica</h4>
+                        <p>Genera electricidad aprovechando la caída del agua. La primera central se construyó en 1882 en Wisconsin, EE.UU. Es la renovable más madura.</p>
+                        <span class="period-badge">Primera central: 1882</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">🌋</div>
+                    <div>
+                        <h4>Energía Geotérmica</h4>
+                        <p>Aprovecha el calor interno de la Tierra. Los romanos ya usaban aguas termales. La primera central geotérmica se inauguró en Larderello, Italia, en 1911.</p>
+                        <span class="period-badge">Primera central: 1911</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">🌊</div>
+                    <div>
+                        <h4>Energía Mareomotriz</h4>
+                        <p>Aprovecha las mareas y corrientes marinas. Es una de las fuentes renovables menos explotadas pero con enorme potencial.</p>
+                        <span class="period-badge">Primera central: 1966 (Francia)</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">🌱</div>
+                    <div>
+                        <h4>Biomasa</h4>
+                        <p>Energía obtenida de materia orgánica. Es la forma de energía más antigua: la madera quemada fue la primera fuente energética de la humanidad.</p>
+                        <span class="period-badge">Desde el origen de la humanidad</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rn-column non-renewable fade-in">
+                <h3>🏭 Energías No Renovables</h3>
+                <p>Fuentes que existen en cantidades limitadas y se agotan con su uso. Su combustión genera gases de efecto invernadero y contaminación.</p>
+
+                <div class="rn-item">
+                    <div class="rn-icon">⬛</div>
+                    <div>
+                        <h4>Carbón</h4>
+                        <p>Combustible fósil sólido formado hace millones de años. Fue el principal combustible de la Revolución Industrial. Sigue siendo una fuente importante de electricidad.</p>
+                        <span class="period-badge">Uso industrial masivo: Siglo XVIII</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">🛢️</div>
+                    <div>
+                        <h4>Petróleo</h4>
+                        <p>Líquido fósil que revolucionó el transporte y la industria. La era del petróleo comenzó en 1859 con el primer pozo en Pensilvania. Base de la economía mundial del siglo XX.</p>
+                        <span class="period-badge">Era petrolera: desde 1859</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">🔵</div>
+                    <div>
+                        <h4>Gas Natural</h4>
+                        <p>Combustible fósil gaseoso, más limpio que el carbón y el petróleo. Su uso se expandió enormemente en el siglo XX para calefacción, cocina y generación eléctrica.</p>
+                        <span class="period-badge">Uso masivo: Siglo XX</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">☢️</div>
+                    <div>
+                        <h4>Energía Nuclear (Fisión)</h4>
+                        <p>Utiliza la fisión de átomos de uranio o plutonio. Produce gran cantidad de energía con bajas emisiones de CO₂, pero genera residuos radiactivos.</p>
+                        <span class="period-badge">Primera central: 1954</span>
+                    </div>
+                </div>
+
+                <div class="rn-item">
+                    <div class="rn-icon">🪨</div>
+                    <div>
+                        <h4>Uranio</h4>
+                        <p>Elemento radiactivo utilizado como combustible en reactores nucleares. Las reservas mundiales son limitadas pero suficientes para décadas de uso.</p>
+                        <span class="period-badge">Uso energético: desde 1942</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRÁFICA -->
+    <div class="chart-section">
+        <div class="section-title fade-in">
+            <h2>Consumo Energético Mundial por Fuente</h2>
+            <div class="line"></div>
+            <p>Distribución aproximada del consumo energético global (2023)</p>
+        </div>
+        <div class="chart-container fade-in">
+            <div class="bar-chart" id="barChart">
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #2d3436, #636e72);" data-height="75">
+                        <span class="bar-value">31%</span>
+                    </div>
+                    <span class="bar-label">Petróleo</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #2d3436, #b2bec3);" data-height="65">
+                        <span class="bar-value">27%</span>
+                    </div>
+                    <span class="bar-label">Carbón</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #0984e3, #74b9ff);" data-height="58">
+                        <span class="bar-value">24%</span>
+                    </div>
+                    <span class="bar-label">Gas Natural</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #00b894, #55efc4);" data-height="25">
+                        <span class="bar-value">10%</span>
+                    </div>
+                    <span class="bar-label">Hidroeléctrica</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #fdcb6e, #f0a500);" data-height="12">
+                        <span class="bar-value">4%</span>
+                    </div>
+                    <span class="bar-label">Solar</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #00cec9, #81ecec);" data-height="10">
+                        <span class="bar-value">3%</span>
+                    </div>
+                    <span class="bar-label">Eólica</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #e17055, #fab1a0);" data-height="10">
+                        <span class="bar-value">4%</span>
+                    </div>
+                    <span class="bar-label">Nuclear</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height:0; background: linear-gradient(to top, #6c5ce7, #a29bfe);" data-height="8">
+                        <span class="bar-value">2%</span>
+                    </div>
+                    <span class="bar-label">Otras</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USOS ACTUALES -->
+    <section class="current-uses" id="actualidad">
+        <div class="section-title fade-in">
+            <h2>La Energía en el Mundo Actual</h2>
+            <div class="line"></div>
+            <p>Cómo utilizamos la energía en los diferentes sectores de la sociedad moderna</p>
+        </div>
+
+        <div class="uses-grid">
+            <div class="use-card fade-in">
+                <div class="use-icon">🏠</div>
+                <h4>Uso Residencial</h4>
+                <p>Calefacción, refrigeración, iluminación, electrodomésticos y cocina. El sector residencial consume ~27% de la electricidad mundial.</p>
+                <div class="use-stat">
+                    <span>🔌 Electricidad</span>
+                    <span>🔥 Gas</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">🏭</div>
+                <h4>Industria</h4>
+                <p>Procesos manufactureros, minería, construcción. Es el sector que más energía consume a nivel global (~32% del total).</p>
+                <div class="use-stat">
+                    <span>⚡ Eléctrica</span>
+                    <span>🛢️ Combustibles</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">🚗</div>
+                <h4>Transporte</h4>
+                <p>Automóviles, aviones, barcos, trenes. Depende en ~95% de combustibles fósiles, pero la electrificación avanza rápidamente.</p>
+                <div class="use-stat">
+                    <span>🛢️ Petróleo</span>
+                    <span>🔋 Eléctrico ↑</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">🌾</div>
+                <h4>Agricultura</h4>
+                <p>Irrigación, maquinaria, invernaderos, procesamiento de alimentos. La agricultura moderna es intensiva en energía.</p>
+                <div class="use-stat">
+                    <span>🛢️ Diésel</span>
+                    <span>💧 Bombeo</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">💻</div>
+                <h4>Tecnología</h4>
+                <p>Centros de datos, telecomunicaciones, criptomonedas, IA. El consumo energético digital crece ~15% anual.</p>
+                <div class="use-stat">
+                    <span>⚡ Electricidad</span>
+                    <span>❄️ Enfriamiento</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">🏥</div>
+                <h4>Salud</h4>
+                <p>Hospitales, equipos médicos, cadena de frío para vacunas, investigación. Requiere suministro energético ininterrumpido.</p>
+                <div class="use-stat">
+                    <span>⚡ Crítico</span>
+                    <span>🔋 Respaldo</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">🚀</div>
+                <h4>Espacio y Defensa</h4>
+                <p>Cohetes, satélites, sistemas militares. Se usan combustibles especiales, energía nuclear y solar en aplicaciones espaciales.</p>
+                <div class="use-stat">
+                    <span>☢️ Nuclear</span>
+                    <span>☀️ Solar</span>
+                </div>
+            </div>
+            <div class="use-card fade-in">
+                <div class="use-icon">🔬</div>
+                <h4>Investigación</h4>
+                <p>Aceleradores de partículas, laboratorios, exploración científica. El ITER busca demostrar la fusión nuclear como fuente de energía.</p>
+                <div class="use-stat">
+                    <span>⚛️ Fusión</span>
+                    <span>🔬 Ciencia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-title">⚡ Energía & Historia</div>
+        <p>Una exploración del papel fundamental de la energía en la civilización humana.</p>
+        <p style="margin-top:0.5rem; color:#555;">Desde el fuego ancestral hasta la fusión nuclear — la energía es el hilo conductor de la historia.</p>
+        <p style="margin-top:1.5rem; color:#444; font-size:0.75rem;">Exploración Histórica Interactiva © 2024</p>
+    </footer>
+
+    <script>
+        // Particles
+        function createParticles() {
+            var container = document.getElementById('particles');
+            for (var i = 0; i < 30; i++) {
+                var p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 8 + 5) + 's';
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                p.style.width = (Math.random() * 4 + 2) + 'px';
+                p.style.height = p.style.width;
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // Mobile menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var tabId = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+                document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.getElementById(tabId).classList.add('active');
+                this.classList.add('active');
+            });
+        });
+
+        // Scroll animations
+        var observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .timeline-item').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounters() {
+            var counters = document.querySelectorAll('.stat-number');
+            counters.forEach(function(counter) {
+                var target = parseInt(counter.getAttribute('data-target'));
+                var duration = 2000;
+                var startTime = performance.now();
+
+                function update(currentTime) {
+                    var elapsed = currentTime - startTime;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var current = Math.floor(eased * target);
+
+                    if (target >= 1000000) {
+                        counter.textContent = (current / 1000000).toFixed(1) + 'M';
+                    } else if (target >= 1000) {
+                        counter.textContent = current.toLocaleString();
+                    } else {
+                        counter.textContent = current;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        if (target >= 1000000) {
+                            counter.textContent = '1M+';
+                        } else if (target === 580) {
+                            counter.textContent = '580';
+                        } else {
+                            counter.textContent = target + '%';
+                        }
+                    }
+                }
+                requestAnimationFrame(update);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        var statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var statsSection = document.querySelector('.stats-section');
+        if (statsSection) statsObserver.observe(statsSection);
+
+        // Bar chart animation
+        var chartObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var bars = entry.target.querySelectorAll('.bar');
+                    bars.forEach(function(bar, index) {
+                        setTimeout(function() {
+                            var h = bar.getAttribute('data-height');
+                            bar.style.height = h + '%';
+                        }, index * 100);
+                    });
+                    chartObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var barChart = document.getElementById('barChart');
+        if (barChart) chartObserver.observe(barChart);
+
+        // Smooth nav background
+        window.addEventListener('scroll', function() {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(13,13,26,0.95)';
+            } else {
+                nav.style.background = 'rgba(13,13,26,0.85)';
+            }
+        });
+    </script>
+</body>
+</html>
